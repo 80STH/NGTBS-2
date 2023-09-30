@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class GridObject
@@ -8,6 +9,7 @@ public class GridObject
     private GridSystemHex<GridObject> gridSystem;
     private GridPosition gridPosition;
     private List<Unit> unitList;
+    private List<Building> buildingList;
     private IInteractable interactable;
 
     public GridObject(GridSystemHex<GridObject> gridSystem, GridPosition gridPosition)
@@ -41,6 +43,21 @@ public class GridObject
     public List<Unit> GetUnitList()
     {
         return unitList;
+    }
+
+    public void AddBuilding(Building building)
+    {
+        buildingList.Add(building);
+    }
+
+    public void RemoveBuilding(Building building)
+    {
+        buildingList.Remove(building);
+    }
+
+    public List<Building> GetBuildingList()
+    {
+        return buildingList;
     }
 
     public bool HasAnyUnit()

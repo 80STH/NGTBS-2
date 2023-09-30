@@ -8,7 +8,6 @@ public class GridSystemVisual : MonoBehaviour
 
     public static GridSystemVisual Instance { get; private set; }
 
-
     [Serializable]
     public struct GridVisualTypeMaterial
     {

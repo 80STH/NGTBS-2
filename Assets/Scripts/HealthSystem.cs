@@ -10,7 +10,7 @@ public class HealthSystem : MonoBehaviour
     public event EventHandler OnDamaged;
 
 
-    [SerializeField] private int health = 100;
+    [SerializeField] private int health = 3;
     private int healthMax;
 
 

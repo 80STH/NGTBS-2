@@ -5,12 +5,22 @@ using UnityEngine;
 
 public class PushAction : BaseAction
 {
+    public static event EventHandler<OnShootEventArgs> OnAnyShoot;
+
+    public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
         public Unit targetUnit;
         public Unit pushedUnit;
     }
+    private int currentPositionIndex;
+    private List<Vector3> positionList;
+
+    //private State state;
     private int maxPushDistance = 1;
+    //private float stateTimer;
+    private Unit targetUnit;
+    private bool canPush;
     public override string GetActionName()
     {
         return "Push";
@@ -43,11 +53,9 @@ public class PushAction : BaseAction
                     continue;
                 }
 
-                IInteractable interactable = LevelGrid.Instance.GetInteractableAtGridPosition(testGridPosition);
-
-                if (interactable == null)
+                if (!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition))
                 {
-                    // No interactable on this GridPosition
+                    // Grid Position is empty, no Unit
                     continue;
                 }
 
@@ -60,18 +68,38 @@ public class PushAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        //targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
+        List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
 
-        //state = State.Aiming;
-        //float aimingStateTime = 1f;
-        //stateTimer = aimingStateTime;
+        currentPositionIndex = 0;
+        positionList = new List<Vector3>();
 
-        //canShootBullet = true;
+        foreach (GridPosition pathGridPosition in pathGridPositionList)
+        {
+            positionList.Add(LevelGrid.Instance.GetWorldPosition(pathGridPosition));
+        }
 
+        //OnStartMoving?.Invoke(this, EventArgs.Empty);
+        Push();
         ActionStart(onActionComplete);
     }
     //public Unit GetTargetUnit()
     //{
     //    return targetUnit;
     //}
+    private void Push()
+    {
+        OnAnyShoot?.Invoke(this, new OnShootEventArgs
+        {
+            targetUnit = targetUnit,
+            pushedUnit = unit
+        });
+
+        OnShoot?.Invoke(this, new OnShootEventArgs
+        {
+            targetUnit = targetUnit,
+            pushedUnit = unit
+        });
+
+        unit.Shift(targetUnit, "Left"); //rewrite!!!
+    }
 }

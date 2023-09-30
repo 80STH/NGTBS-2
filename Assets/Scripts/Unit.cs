@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private const int ACTION_POINTS_MAX = 3;
+    private const int ACTION_POINTS_MAX = 5;
 
 
     public static event EventHandler OnAnyActionPointsChanged;
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
+    //public static event EventHandler OnAnyUnitPushed;
 
 
     [SerializeField] private bool isEnemy;
@@ -18,12 +19,14 @@ public class Unit : MonoBehaviour
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
+    private ShiftSystem shiftSystem;
     private BaseAction[] baseActionArray;
     private int actionPoints = ACTION_POINTS_MAX;
 
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
+        shiftSystem = GetComponent<ShiftSystem>();
         baseActionArray = GetComponents<BaseAction>();
     }
 
@@ -35,6 +38,7 @@ public class Unit : MonoBehaviour
         TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 
         healthSystem.OnDead += HealthSystem_OnDead;
+        //shiftSystem.OnPush += ShiftSystem_OnPush;
 
         OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -135,6 +139,11 @@ public class Unit : MonoBehaviour
         healthSystem.Damage(damageAmount);
     }
 
+    public void Shift(Unit unit, string pushDirection)
+    {
+        gridPosition = shiftSystem.Shift(unit, pushDirection);
+    }
+
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);
@@ -143,6 +152,11 @@ public class Unit : MonoBehaviour
 
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
     }
+
+    //private void ShiftSystem_OnPush(object sender, EventArgs e)
+    //{
+    //    OnAnyUnitPushed?.Invoke(this, EventArgs.Empty);
+    //}
 
     public float GetHealthNormalized()
     {

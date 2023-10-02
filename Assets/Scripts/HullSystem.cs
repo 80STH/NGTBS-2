@@ -13,16 +13,10 @@ public class HullSystem : MonoBehaviour
     public static HullSystem Instance { get; private set; }
 
     [SerializeField] private int hull = 7;
-
+    private int hullMax;
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Debug.LogError("There's more than one HullSystem! " + transform + " - " + Instance);
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
+        hullMax = hull;
     }
 
     public void Damage(int damageAmount)

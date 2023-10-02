@@ -17518,7 +17518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hullText: {fileID: 1184383446}
-  hullSystem: {fileID: 1163008627}
+  hullSystem: {fileID: 1163008629}
 --- !u!1 &1096887696
 GameObject:
   m_ObjectHideFlags: 0
@@ -17846,7 +17846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1163008628}
-  - component: {fileID: 1163008627}
+  - component: {fileID: 1163008629}
   m_Layer: 0
   m_Name: HullSystem
   m_TagString: Untagged
@@ -17854,19 +17854,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1163008627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163008626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5d3b631b078f3341a9b17b53ec90af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hull: 7
 --- !u!4 &1163008628
 Transform:
   m_ObjectHideFlags: 0
@@ -17882,6 +17869,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1163008629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163008626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d3b631b078f3341a9b17b53ec90af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hull: 7
 --- !u!1001 &1169322370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28761,7 +28761,6 @@ SceneRoots:
   - {fileID: 1609866653}
   - {fileID: 89496904}
   - {fileID: 866955914}
-  - {fileID: 1163008628}
   - {fileID: 1127422746}
   - {fileID: 625290986}
   - {fileID: 1499903171}
@@ -28774,3 +28773,4 @@ SceneRoots:
   - {fileID: 1650005856}
   - {fileID: 116448329}
   - {fileID: 1899196644}
+  - {fileID: 1163008628}

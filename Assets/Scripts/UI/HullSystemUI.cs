@@ -28,21 +28,14 @@ public class HullSystemUI : MonoBehaviour
         //UpdateEndTurnButtonVisibility();
     }
 
-    private void TurnSystem_OnHullChanged(object sender, EventArgs e)
+    private void HullSystem_OnHullChanged(object sender, EventArgs e)
     {
         UpdateHullText();
-        //UpdateEnemyTurnVisual();
-        //UpdateEndTurnButtonVisibility();
     }
 
     private void UpdateHullText()
     {
         hullText.text = "HULL: " + HullSystem.Instance.GetHull();
-    }
-
-    private void HullSystem_OnHullChanged(object sender, EventArgs e)
-    {
-        UpdateHullText();
     }
 
     //private void UpdateEnemyTurnVisual()

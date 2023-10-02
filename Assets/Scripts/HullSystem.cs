@@ -8,15 +8,18 @@ using UnityEngine.SceneManagement;
 public class HullSystem : MonoBehaviour
 {
     public event EventHandler OnHullChanged;
-    public event EventHandler OnHullDestroyed;
-
     public static HullSystem Instance { get; private set; }
 
     [SerializeField] private int hull = 7;
-    private int hullMax;
     private void Awake()
     {
-        hullMax = hull;
+        if (Instance != null)
+        {
+            Debug.LogError("There's more than one HullSystem! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     public void Damage(int damageAmount)

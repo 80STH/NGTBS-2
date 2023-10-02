@@ -13,7 +13,7 @@ public class PushAction : BaseAction
         public Unit targetUnit;
         public Unit pushedUnit;
     }
-    private int currentPositionIndex;
+    //private int currentPositionIndex;
     private List<Vector3> positionList;
 
     //private State state;
@@ -70,7 +70,7 @@ public class PushAction : BaseAction
     {
         List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
 
-        currentPositionIndex = 0;
+        //currentPositionIndex = 0;
         positionList = new List<Vector3>();
 
         foreach (GridPosition pathGridPosition in pathGridPositionList)

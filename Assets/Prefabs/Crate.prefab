@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5732773684867799349}
   - component: {fileID: 5732773684867799350}
   - component: {fileID: 5141125367590770052}
+  - component: {fileID: -7728438036091381443}
+  - component: {fileID: 6264633221272834277}
   m_Layer: 8
   m_Name: Crate
   m_TagString: Untagged
@@ -25,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5732773684867799351}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.97, y: 0, z: 3.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 5729074478399656320}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5732773684867799350
 BoxCollider:
@@ -42,9 +44,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5732773684867799351}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!114 &5141125367590770052
@@ -61,12 +71,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crateDestroyedPrefab: {fileID: 5732773684867799349, guid: a488b700b71332143b38100217f073f7,
     type: 3}
+--- !u!114 &-7728438036091381443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5732773684867799351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19709bec1a6a0984fad062f35ee08eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+--- !u!114 &6264633221272834277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5732773684867799351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a589cc751a36c6448d4579e76ae2507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
 --- !u!1001 &5732773684707816366
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 5732773684867799349}
     m_Modifications:
     - target: {fileID: 1852967516923486, guid: e1b9e21039285c042b92ea66c7f1c444, type: 3}
@@ -144,7 +180,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 40347e2344b3ed04a8165ea238a93a0b, type: 2}
     m_RemovedComponents:
     - {fileID: 64008491219568898, guid: e1b9e21039285c042b92ea66c7f1c444, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1b9e21039285c042b92ea66c7f1c444, type: 3}
 --- !u!4 &5729074478399656320 stripped
 Transform:

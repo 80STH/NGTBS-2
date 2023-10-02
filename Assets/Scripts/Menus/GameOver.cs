@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MainMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI gameVersion;
 
     public void Start()
     {
-        gameVersion.text = "0.0.1 InDev";
+        gameVersion.text = "0.0.2 InDev";
     }
     public void ExitButton()
     {

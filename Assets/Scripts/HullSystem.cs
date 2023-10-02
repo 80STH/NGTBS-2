@@ -3,17 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HullSystem : MonoBehaviour
 {
-    public event EventHandler OnGameOver;
     public event EventHandler OnHullChanged;
     public event EventHandler OnHullDestroyed;
 
     public static HullSystem Instance { get; private set; }
 
     [SerializeField] private int hull = 7;
-    private int hullMax;
 
     private void Awake()
     {
@@ -24,7 +23,6 @@ public class HullSystem : MonoBehaviour
             return;
         }
         Instance = this;
-        hullMax = hull;
     }
 
     public void Damage(int damageAmount)
@@ -46,7 +44,7 @@ public class HullSystem : MonoBehaviour
 
     private void GameOver() 
     {
-        OnGameOver?.Invoke(this, EventArgs.Empty);
+        SceneManager.LoadScene("Game Over");
     }
 
     public float GetHull()

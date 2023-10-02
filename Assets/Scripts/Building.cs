@@ -10,8 +10,6 @@ public class Building : MonoBehaviour
     //public static event EventHandler OnAnyUnitDead;
     //public static event EventHandler OnAnyUnitPushed;
 
-    [SerializeField] private int health;
-
 
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
@@ -30,7 +28,7 @@ public class Building : MonoBehaviour
 
         //TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
 
-        //healthSystem.OnDead += HealthSystem_OnDead;
+        healthSystem.OnDead += HealthSystem_OnDead;
         //what
         //hullSystem.OnHullChanged += HullSystem_OnHullChanged;
         //hullSystem.OnHullDestroyed += HullSystem_OnHullDestroyed;
@@ -54,18 +52,22 @@ public class Building : MonoBehaviour
 
     public void Damage(int damageAmount)
     {
-        healthSystem.Damage(damageAmount);
         hullSystem.Damage(damageAmount);
+        healthSystem.Damage(damageAmount);
     }
 
-    //private void HealthSystem_OnDead(object sender, EventArgs e)
-    //{
-    //    LevelGrid.Instance.RemoveBuildingAtGridPosition(gridPosition, this);
+    private void HealthSystem_OnDead(object sender, EventArgs e)
+    {
+        LevelGrid.Instance.RemoveBuildingAtGridPosition(gridPosition, this);
 
-    //    Destroy(gameObject);
+        Destroy(gameObject);
 
-    //    //OnAnyBuildingDestroyed?.Invoke(this, EventArgs.Empty);
-    //}
+        //temporary!!!
+        hullSystem.Damage(1);
+        Debug.Log(hullSystem.GetHull());
+
+        //OnAnyBuildingDestroyed?.Invoke(this, EventArgs.Empty);
+    }
 
     private void HullSystem_OnHullChanged(object sender, EventArgs e)
     {

@@ -17518,6 +17518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hullText: {fileID: 1184383446}
+  hullSystem: {fileID: 1163008627}
 --- !u!1 &1096887696
 GameObject:
   m_ObjectHideFlags: 0

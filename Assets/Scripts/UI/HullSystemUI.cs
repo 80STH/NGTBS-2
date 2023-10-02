@@ -10,6 +10,7 @@ public class HullSystemUI : MonoBehaviour
 
     //[SerializeField] private Button endTurnBtn;
     [SerializeField] private TextMeshProUGUI hullText;
+    [SerializeField] private HullSystem hullSystem;
     //[SerializeField] private GameObject enemyTurnVisualGameObject;
 
     private void Start()
@@ -20,6 +21,7 @@ public class HullSystemUI : MonoBehaviour
         //});
 
         //TurnSystem.Instance.OnTurnChanged += TurnSystem_OnTurnChanged;
+        hullSystem.OnHullChanged += HullSystem_OnHullChanged;
 
         UpdateHullText();
         //UpdateEnemyTurnVisual();
@@ -36,6 +38,11 @@ public class HullSystemUI : MonoBehaviour
     private void UpdateHullText()
     {
         hullText.text = "HULL: " + HullSystem.Instance.GetHull();
+    }
+
+    private void HullSystem_OnHullChanged(object sender, EventArgs e)
+    {
+        UpdateHullText();
     }
 
     //private void UpdateEnemyTurnVisual()

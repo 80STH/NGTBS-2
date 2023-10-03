@@ -65,20 +65,20 @@ public class LevelGrid : MonoBehaviour
         gridObject.RemoveUnit(unit);
     }
 
-    public void AddBuildingAtGridPosition(GridPosition gridPosition, Building building)
+    public void AddBuildingAtGridPosition(GridPosition gridPosition, BaseBuilding building)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.AddBuilding(building);
     }
 
     //maybe remove this?
-    public List<Building> GetBuildingListAtGridPosition(GridPosition gridPosition)
+    public List<BaseBuilding> GetBuildingListAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         return gridObject.GetBuildingList();
     }
 
-    public void RemoveBuildingAtGridPosition(GridPosition gridPosition, Building building)
+    public void RemoveBuildingAtGridPosition(GridPosition gridPosition, BaseBuilding building)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.RemoveBuilding(building);

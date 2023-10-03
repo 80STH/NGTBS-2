@@ -9,7 +9,7 @@ public class GridObject
     private GridSystemHex<GridObject> gridSystem;
     private GridPosition gridPosition;
     private List<Unit> unitList;
-    private List<Building> buildingList;
+    private List<BaseBuilding> buildingList;
     private IInteractable interactable;
 
     public GridObject(GridSystemHex<GridObject> gridSystem, GridPosition gridPosition)
@@ -17,7 +17,7 @@ public class GridObject
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
         unitList = new List<Unit>();
-        buildingList = new List<Building>();
+        buildingList = new List<BaseBuilding>();
     }
 
     public override string ToString()
@@ -46,17 +46,17 @@ public class GridObject
         return unitList;
     }
 
-    public void AddBuilding(Building building)
+    public void AddBuilding(BaseBuilding building)
     {
         buildingList.Add(building);
     }
 
-    public void RemoveBuilding(Building building)
+    public void RemoveBuilding(BaseBuilding building)
     {
         buildingList.Remove(building);
     }
 
-    public List<Building> GetBuildingList()
+    public List<BaseBuilding> GetBuildingList()
     {
         return buildingList;
     }

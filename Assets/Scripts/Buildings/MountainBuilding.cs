@@ -3,22 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class MountainBuilding : BaseBuilding
 {
     //public static event EventHandler OnAnyActionPointsChanged;
     //public static event EventHandler OnAnyUnitSpawned;
     //public static event EventHandler OnAnyUnitDead;
     //public static event EventHandler OnAnyUnitPushed;
-
-    private GridPosition gridPosition;
-    private HealthSystem healthSystem;
-    private HullSystem hullSystem;
-
-    private void Awake()
-    {
-        healthSystem = GetComponent<HealthSystem>();
-        hullSystem = GetComponent<HullSystem>();
-    }
 
     private void Start()
     {
@@ -33,16 +23,7 @@ public class Building : MonoBehaviour
         //hullSystem.OnGameOver += HullSystem_OnGameOver;
         //shiftSystem.OnPush += ShiftSystem_OnPush;
     }
-    public GridPosition GetGridPosition()
-    {
-        return gridPosition;
-    }
-
-    public Vector3 GetWorldPosition()
-    {
-        return transform.position;
-    }
-
+     
     public void Damage(int damageAmount)
     {
         healthSystem.Damage(damageAmount);
@@ -56,9 +37,8 @@ public class Building : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public float GetHealthNormalized()
+    public override string GetBuildingName()
     {
-        return healthSystem.GetHealthNormalized();
+        return "Hull Building";
     }
-
 }

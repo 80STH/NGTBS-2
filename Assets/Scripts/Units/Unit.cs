@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -20,14 +21,16 @@ public class Unit : MonoBehaviour
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
     private ShiftSystem shiftSystem;
-    private BaseAction[] baseActionArray;
+    protected BaseAction[] baseActionArray;
     private int actionPoints = ACTION_POINTS_MAX;
 
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
         shiftSystem = GetComponent<ShiftSystem>();
+        //mandatory actions
         baseActionArray = GetComponents<BaseAction>();
+        //baseActionArray.Append(GetComponent<MoveAction>());
     }
 
     private void Start()
@@ -56,7 +59,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public T GetAction<T>() where T : BaseAction
+    public virtual T GetAction<T>() where T : BaseAction
     {
         foreach (BaseAction baseAction in baseActionArray)
         {

@@ -39,6 +39,6 @@ public class MountainBuilding : BaseBuilding
 
     public override string GetBuildingName()
     {
-        return "Hull Building";
+        return "Mountain Building";
     }
 }

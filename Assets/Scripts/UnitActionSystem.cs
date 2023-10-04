@@ -82,6 +82,10 @@ public class UnitActionSystem : MonoBehaviour
 
             SetBusy();
             selectedAction.TakeAction(mouseGridPosition, ClearBusy);
+            if(selectedAction is MoveAction)
+            {
+
+            }
 
             OnActionStarted?.Invoke(this, EventArgs.Empty);
         }

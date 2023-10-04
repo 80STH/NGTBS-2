@@ -11,8 +11,7 @@ public class UndoMovementsManager : MonoBehaviour
         Vector3 position;
     }
     public static UndoMovementsManager Instance { get; private set; }
-    private List<Movement> movementsList = new List<Movement>();
-    private int index = 0;
+    private Stack<Movement> movementStack = new Stack<Movement>();
     private void Awake()
     {
         if (Instance != null)
@@ -24,30 +23,18 @@ public class UndoMovementsManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public Movement GetLastMovement() //return+remove
     {
-        
+        return movementStack.Pop();
     }
 
-    public Movement GetLastMovement()
+    public void AddToMovementStack(Movement movement)
     {
-        return movementsList[index];
+        movementStack.Push(movement);
     }
 
-    public void AddToMovementList(Movement movement)
+    public void ClearMovementStack()
     {
-        movementsList.Add(movement);
-        index++;
-    }
-
-    public void RemoveFromMovementList()
-    {
-        movementsList.RemoveAt(index);
-        index--;
-    }
-
-    public void ClearMovementList()
-    {
-        movementsList.Clear();
+        movementStack.Clear();
     }
 }

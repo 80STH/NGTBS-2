@@ -50,6 +50,8 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
+        UndoManager.Instance.AddToMovementStack(unit, gridPosition);
+
         List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
 
         currentPositionIndex = 0;

@@ -147,6 +147,11 @@ public class Unit : MonoBehaviour
         gridPosition = shiftSystem.Shift(unit, pushDirection);
     }
 
+    public void SetGridPosition(GridPosition gridPosition)
+    {
+        this.gridPosition = gridPosition;
+    }
+
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         LevelGrid.Instance.RemoveUnitAtGridPosition(gridPosition, this);

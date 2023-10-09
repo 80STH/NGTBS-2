@@ -68,5 +68,28 @@ PrefabInstance:
     - {fileID: 3935794340981501179, guid: 69b98c41becc4ae4099f1eba6797785b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7601346721002605772, guid: 69b98c41becc4ae4099f1eba6797785b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7266195954827924798}
   m_SourcePrefab: {fileID: 100100000, guid: 69b98c41becc4ae4099f1eba6797785b, type: 3}
+--- !u!1 &7461798796124187576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7601346721002605772, guid: 69b98c41becc4ae4099f1eba6797785b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1076583413749360500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7266195954827924798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461798796124187576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3491f5515b58a4584d859326f77614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMoveDistance: 4

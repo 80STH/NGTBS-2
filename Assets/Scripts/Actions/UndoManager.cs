@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UndoManager : MonoBehaviour
-{
-    public event EventHandler OnUndoMovement;
+{ 
+    //public event EventHandler OnActionOrEndTurn;
     public struct Movement
     {
         public Unit unit;
@@ -30,12 +30,22 @@ public class UndoManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        //UndoManager_OnActionOrEndTurn();
+    }
+
     public void UndoMovement() //return+remove //rewrite!!!
     {
-        Movement movement = movementStack.Pop();
-        Unit unit = movement.unit;
-        GridPosition gridPosition = movement.gridPosition;
-        unit.SetGridPosition(gridPosition);
+        if (movementStack.Count > 0)
+        {
+            Movement movement = movementStack.Pop();
+            Unit unit = movement.unit;
+            GridPosition undoGridPosition = movement.gridPosition;
+            GridPosition oldGridPosition = unit.GetGridPosition();
+            LevelGrid.Instance.UnitMovedGridPosition(unit, oldGridPosition, undoGridPosition);
+            unit.transform.position = LevelGrid.Instance.GetWorldPosition(undoGridPosition);
+        }
     }
 
     public void AddToMovementStack(Unit unit, GridPosition gridPosition)

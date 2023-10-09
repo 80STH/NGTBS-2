@@ -82,10 +82,6 @@ public class UnitActionSystem : MonoBehaviour
 
             SetBusy();
             selectedAction.TakeAction(mouseGridPosition, ClearBusy);
-            if(selectedAction is MoveAction)
-            {
-
-            }
 
             OnActionStarted?.Invoke(this, EventArgs.Empty);
         }
@@ -140,7 +136,7 @@ public class UnitActionSystem : MonoBehaviour
     {
         selectedUnit = unit;
 
-        SetSelectedAction(unit.GetAction<MoveAction>());
+        SetSelectedAction(unit.GetAction<MoveIndependentAction>());
 
         OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
     }

@@ -15,7 +15,7 @@ public class UnitAnimator : MonoBehaviour
 
     private void Awake()
     {
-        if (TryGetComponent<MoveAction>(out MoveAction moveAction))
+        if (TryGetComponent<MoveIndependentAction>(out MoveIndependentAction moveAction))
         {
             moveAction.OnStartMoving += MoveAction_OnStartMoving;
             moveAction.OnStopMoving += MoveAction_OnStopMoving;
@@ -57,7 +57,7 @@ public class UnitAnimator : MonoBehaviour
     private void MoveAction_OnStopMoving(object sender, EventArgs e)
     {
         animator.SetBool("IsWalking", false);
-    }
+    } 
 
     private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {

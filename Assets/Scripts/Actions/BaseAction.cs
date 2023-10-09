@@ -14,9 +14,18 @@ public abstract class BaseAction : MonoBehaviour
     protected bool isActive;
     protected Action onActionComplete;
 
+    //basic action properties
+    protected int actionPointCost;
+
+
     protected virtual void Awake()
     {
         unit = GetComponent<Unit>();
+    }
+
+    public virtual bool IsMoveAction()
+    {
+        return false;
     }
 
     public abstract string GetActionName();

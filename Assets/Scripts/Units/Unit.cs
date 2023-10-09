@@ -51,6 +51,7 @@ public class Unit : MonoBehaviour
         GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         if (newGridPosition != gridPosition)
         {
+            Debug.Log(newGridPosition);
             // Unit changed Grid Position
             GridPosition oldGridPosition = gridPosition;
             gridPosition = newGridPosition;
@@ -145,11 +146,6 @@ public class Unit : MonoBehaviour
     public void Shift(Unit unit, string pushDirection)
     {
         gridPosition = shiftSystem.Shift(unit, pushDirection);
-    }
-
-    public void SetGridPosition(GridPosition gridPosition)
-    {
-        this.gridPosition = gridPosition;
     }
 
     private void HealthSystem_OnDead(object sender, EventArgs e)

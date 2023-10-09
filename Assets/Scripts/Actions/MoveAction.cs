@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveAction : BaseAction
+//this is an completely independent action!
+public class MoveIndependentAction : BaseAction
 {
 
     public event EventHandler OnStartMoving;
@@ -47,10 +48,18 @@ public class MoveAction : BaseAction
         }
     }
 
+    public override bool IsMoveAction()
+    {
+        return true;
+    }
 
+    public override int GetActionPointsCost()
+    {
+        return 0;
+    }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        UndoManager.Instance.AddToMovementStack(unit, gridPosition);
+        UndoManager.Instance.AddToMovementStack(unit, unit.GetGridPosition());
 
         List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
 
@@ -122,10 +131,6 @@ public class MoveAction : BaseAction
     }
 
 
-    public override string GetActionName()
-    {
-        return "Move";
-    }
 
     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
     {
@@ -137,5 +142,11 @@ public class MoveAction : BaseAction
             actionValue = targetCountAtGridPosition * 10,
         };
     }
-    
+
+    public override string GetActionName()
+    {
+        return "Move";
+        //if i need this, something is wrong with my code
+        //throw new NotImplementedException();
+    }
 }

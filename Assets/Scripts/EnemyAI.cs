@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour
 
         foreach (BaseAction baseAction in enemyUnit.GetBaseActionArray())
         {
-            if (!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
+            if (!enemyUnit.CanSpendActionAvailablityToTakeAction(baseAction))
             {
                 // Enemy cannot afford this action
                 continue;
@@ -114,7 +114,7 @@ public class EnemyAI : MonoBehaviour
 
         }
 
-        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction))
+        if (bestEnemyAIAction != null && enemyUnit.TrySpendActionAvailabilityToTakeAction(bestBaseAction))
         {
             bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, onEnemyAIActionComplete);
             return true;

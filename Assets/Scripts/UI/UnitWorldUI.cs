@@ -15,7 +15,7 @@ public class UnitWorldUI : MonoBehaviour
 
     private void Start()
     {
-        Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
+        Unit.OnAnyActionAvailableChanged += Unit_OnAnyActionPointsChanged;
         healthSystem.OnDamaged += HealthSystem_OnDamaged;
 
         UpdateActionPointsText();
@@ -24,7 +24,7 @@ public class UnitWorldUI : MonoBehaviour
 
     private void UpdateActionPointsText() 
     {
-        actionPointsText.text = unit.GetActionPoints().ToString();
+        actionPointsText.text = unit.IsActionAvailable().ToString();
     }
 
     private void Unit_OnAnyActionPointsChanged(object sender, EventArgs e)
@@ -44,7 +44,7 @@ public class UnitWorldUI : MonoBehaviour
 
     private void OnDestroy() 
     {
-        Unit.OnAnyActionPointsChanged -= Unit_OnAnyActionPointsChanged;
+        Unit.OnAnyActionAvailableChanged -= Unit_OnAnyActionPointsChanged;
     }
 
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HullBuilding : BaseBuilding
+public class HullBuilding : Building
 {
     //public static event EventHandler OnAnyActionPointsChanged;
     //public static event EventHandler OnAnyUnitSpawned;

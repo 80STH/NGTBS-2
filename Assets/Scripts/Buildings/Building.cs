@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseBuilding : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     protected GridPosition gridPosition;
     protected HealthSystem healthSystem;
@@ -35,6 +35,11 @@ public abstract class BaseBuilding : MonoBehaviour
 
     //    Destroy(gameObject);
     //}
+
+    public void Damage(int damageAmount)
+    {
+        healthSystem.Damage(damageAmount);
+    }
 
     public float GetHealthNormalized()
     {

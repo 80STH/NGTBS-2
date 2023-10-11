@@ -52,11 +52,6 @@ public class MoveIndependentAction : BaseAction
     {
         return true;
     }
-
-    public override int GetActionPointsCost()
-    {
-        return 0;
-    }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
         UndoManager.Instance.AddToMovementStack(unit, unit.GetGridPosition());

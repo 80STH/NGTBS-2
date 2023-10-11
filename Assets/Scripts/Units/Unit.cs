@@ -6,10 +6,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private const int ACTION_POINTS_MAX = 5;
-
-
-    public static event EventHandler OnAnyActionPointsChanged;
+    public static event EventHandler OnAnyActionAvailableChanged;
     public static event EventHandler OnAnyUnitSpawned;
     public static event EventHandler OnAnyUnitDead;
     //public static event EventHandler OnAnyUnitPushed;
@@ -17,12 +14,12 @@ public class Unit : MonoBehaviour
 
     [SerializeField] private bool isEnemy;
 
-
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
     private ShiftSystem shiftSystem;
     protected BaseAction[] baseActionArray;
-    private int actionPoints = ACTION_POINTS_MAX;
+    private bool movementAvailable = true;
+    private bool actionAvailable = true;
 
     private void Awake()
     {
@@ -87,11 +84,27 @@ public class Unit : MonoBehaviour
         return baseActionArray;
     }
 
-    public bool TrySpendActionPointsToTakeAction(BaseAction baseAction)
+    //public void SetGridPosition(GridPosition gridPosition)
+    //{
+    //    return gridPosition;
+    //}
+
+    //public void SetWorldPosition()
+    //{
+    //    return transform.position;
+    //}
+
+    //AI REMINDER!!!
+    public bool TrySpendActionAvailabilityToTakeAction(BaseAction baseAction)
     {
-        if (CanSpendActionPointsToTakeAction(baseAction))
+        if (baseAction.IsMoveAction() && CanSpendActionAvailablityToTakeAction(baseAction))
         {
-            SpendActionPoints(baseAction.GetActionPointsCost());
+            SpendMovementAvailability();
+            return true;
+        }
+        if (CanSpendActionAvailablityToTakeAction(baseAction))
+        {
+            SpendActionAvailability();
             return true;
         } else
         {
@@ -99,27 +112,33 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public bool CanSpendActionPointsToTakeAction(BaseAction baseAction)
+    public bool CanSpendActionAvailablityToTakeAction(BaseAction baseAction)
     {
-        if (actionPoints >= baseAction.GetActionPointsCost())
-        {
-            return true;
-        } else
+        if(baseAction.IsMoveAction() && !movementAvailable)
         {
             return false;
         }
+        return actionAvailable;
     }
 
-    private void SpendActionPoints(int amount)
+    private void SpendMovementAvailability()
     {
-        actionPoints -= amount;
+        movementAvailable = false;
 
-        OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+        OnAnyActionAvailableChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public int GetActionPoints()
+    private void SpendActionAvailability()
     {
-        return actionPoints;
+        movementAvailable = false;
+        actionAvailable = false;
+
+        OnAnyActionAvailableChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public bool IsActionAvailable()
+    {
+        return actionAvailable;
     }
 
     private void TurnSystem_OnTurnChanged(object sender, EventArgs e)
@@ -127,9 +146,11 @@ public class Unit : MonoBehaviour
         if ((IsEnemy() && !TurnSystem.Instance.IsPlayerTurn()) ||
             (!IsEnemy() && TurnSystem.Instance.IsPlayerTurn()))
         {
-            actionPoints = ACTION_POINTS_MAX;
+            //it's a turn movement reset
+            movementAvailable = true;
+            actionAvailable = true;
 
-            OnAnyActionPointsChanged?.Invoke(this, EventArgs.Empty);
+            OnAnyActionAvailableChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 

@@ -65,20 +65,20 @@ public class LevelGrid : MonoBehaviour
         gridObject.RemoveUnit(unit);
     }
 
-    public void AddBuildingAtGridPosition(GridPosition gridPosition, BaseBuilding building)
+    public void AddBuildingAtGridPosition(GridPosition gridPosition, Building building)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.AddBuilding(building);
     }
 
     //maybe remove this?
-    public List<BaseBuilding> GetBuildingListAtGridPosition(GridPosition gridPosition)
+    public List<Building> GetBuildingListAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         return gridObject.GetBuildingList();
     }
 
-    public void RemoveBuildingAtGridPosition(GridPosition gridPosition, BaseBuilding building)
+    public void RemoveBuildingAtGridPosition(GridPosition gridPosition, Building building)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.RemoveBuilding(building);
@@ -117,6 +117,18 @@ public class LevelGrid : MonoBehaviour
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         return gridObject.GetUnit();
+    }
+
+    public bool HasAnyBuildingOnGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.HasAnyBuilding();
+    }
+
+    public Building GetBuildingAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.GetBuilding();
     }
 
     public IInteractable GetInteractableAtGridPosition(GridPosition gridPosition)

@@ -23,6 +23,7 @@ public abstract class BaseAction : MonoBehaviour
         unit = GetComponent<Unit>();
     }
 
+    //i need this, because i can't move after main action
     public virtual bool IsMoveAction()
     {
         return false;
@@ -39,11 +40,6 @@ public abstract class BaseAction : MonoBehaviour
     }
 
     public abstract List<GridPosition> GetValidActionGridPositionList();
-
-    public virtual int GetActionPointsCost()
-    {
-        return 1;
-    }
 
     protected void ActionStart(Action onActionComplete)
     {

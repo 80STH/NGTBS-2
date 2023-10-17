@@ -84,7 +84,7 @@ public class GridObject
 
     public Building GetBuilding()
     {
-        if (HasAnyUnit())
+        if (HasAnyBuilding())
         {
             return buildingList[0];
         }

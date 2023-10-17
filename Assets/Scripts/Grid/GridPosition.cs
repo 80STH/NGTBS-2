@@ -56,4 +56,65 @@ public struct GridPosition : IEquatable<GridPosition>
         return new GridPosition(a.x - b.x, a.z - b.z);
     }
 
+    public static GridPosition TileMove(GridPosition gridPosition, string direction)
+    {
+        if (gridPosition.z % 2 == 0)
+        {
+            switch (direction)
+            {
+                case "LeftDown":
+                    gridPosition.z -= 1;
+                    gridPosition.x -= 1;
+                    break;
+                case "Left":
+                    gridPosition.x -= 1;
+                    break;
+                case "LeftUp":
+                    gridPosition.x += 1;
+                    gridPosition.z -= 1;
+                    break;
+                case "RightUp":
+                    gridPosition.x -= 1;
+                    gridPosition.z += 1;
+                    break;
+                case "Right":
+                    gridPosition.x += 1;
+                    break;
+                case "RightDown":
+                    gridPosition.x += 1;
+                    gridPosition.z += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (direction)
+            {
+                case "LeftDown":
+                    gridPosition.z -= 1;
+                    break;
+                case "Left":
+                    gridPosition.x -= 1;
+                    break;
+                case "LeftUp":
+                    gridPosition.z += 1;
+                    break;
+                case "RightUp":
+                    gridPosition.z += 1;
+                    gridPosition.x += 1;
+                    break;
+                case "Right":
+                    gridPosition.x += 1;
+                    break;
+                case "RightDown":
+                    gridPosition.z -= 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return gridPosition;
+    }
 }

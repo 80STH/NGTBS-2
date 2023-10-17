@@ -38,30 +38,9 @@ public class PushInteraction : MonoBehaviour
 
     public void Push(Unit targetUnit, string direction)
     {
-        GridPosition gridPosition = targetUnit.GetGridPosition();
-        switch (direction)
-        {
-            case "LeftDown":
-                gridPosition = gridPosition;
-                break;
-            case "Left":
-                gridPosition.x -= 1;
-                break;
-            case "LeftUp":
-                gridPosition = gridPosition;
-                break;
-            case "RightUp":
-                gridPosition = gridPosition;
-                break;
-            case "Right":
-                gridPosition.x += 1;
-                break;
-            case "RightDown":
-                gridPosition = gridPosition;
-                break;
-            default:
-                break;
-        }
+        Debug.Log(direction);
+        GridPosition gridPosition = GridPosition.TileMove(targetUnit.GetGridPosition(), direction);
+        
         CheckCollision(targetUnit, gridPosition);
 
     }
@@ -71,12 +50,14 @@ public class PushInteraction : MonoBehaviour
         if (LevelGrid.Instance.HasAnyUnitOnGridPosition(gridPosition))
         {
             collidedUnit = LevelGrid.Instance.GetUnitAtGridPosition(gridPosition);
-            UnitCollision();
+            UnitCollision(targetUnit);
+            return;
         }
         if (LevelGrid.Instance.HasAnyBuildingOnGridPosition(gridPosition))
         {
             collidedBuilding = LevelGrid.Instance.GetBuildingAtGridPosition(gridPosition);
-            BuildingCollision();
+            BuildingCollision(targetUnit);
+            return;
         }
         //if (LevelGrid.Instance.HasAnyEdgeOnGridPosition(gridPosition))
         //{
@@ -85,6 +66,7 @@ public class PushInteraction : MonoBehaviour
         else
         {
             Shift(targetUnit, gridPosition);
+            return;
         }
     }
 
@@ -93,7 +75,7 @@ public class PushInteraction : MonoBehaviour
 
     }
 
-    public void UnitCollision()
+    public void UnitCollision(Unit targetUnit)
     {
         //for testing
         if(targetUnit == collidedUnit)
@@ -104,7 +86,7 @@ public class PushInteraction : MonoBehaviour
         collidedUnit.Damage(1);
     }
 
-    public void BuildingCollision()
+    public void BuildingCollision(Unit targetUnit)
     {
         targetUnit.Damage(1);
         collidedBuilding.Damage(1);

@@ -13,17 +13,17 @@ public class GridFieldGenerator : MonoBehaviour
 
     //temporary code
     private int[,] data =
-            {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-            ,{0, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 0}
-            ,{0, 0, 0, 3, 3, 1, 3, 3, 3, 0, 0, 0}
-            ,{0, 0, 3, 3, 3, 1, 1, 3, 3, 0, 0, 0}
-            ,{0, 0, 3, 3, 3, 3, 1, 3, 3, 3, 0, 0}
-            ,{0, 3, 3, 3, 3, 3, 1, 3, 3, 3, 0, 0}
-            ,{0, 0, 3, 3, 3, 3, 1, 3, 3, 3, 0, 0}
-            ,{0, 0, 3, 3, 3, 3, 1, 3, 3, 0, 0, 0}
-            ,{0, 0, 0, 3, 3, 3, 3, 1, 3, 0, 0, 0}
-            ,{0, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 0}
-            ,{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+            {{0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0}
+            ,{0, 0, 3, 1, 1, 1, 1, 1, 3, 0, 0, 0}
+            ,{0, 0, 3, 1, 1, 1, 1, 1, 1, 3, 0, 0}
+            ,{0, 3, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0}
+            ,{0, 3, 1, 2, 1, 1, 1, 1, 1, 1, 3, 0}
+            ,{3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 0}
+            ,{0, 3, 1, 1, 1, 1, 1, 2, 1, 1, 3, 0}
+            ,{0, 3, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0}
+            ,{0, 0, 3, 1, 1, 2, 1, 1, 1, 3, 0, 0}
+            ,{0, 0, 3, 1, 1, 1, 1, 1, 3, 0, 0, 0}
+            ,{0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 0, 0}};
     private void Start()
     {
         gridFieldGeneratorArray = new GridFieldGenerator[
@@ -31,11 +31,12 @@ public class GridFieldGenerator : MonoBehaviour
             LevelGrid.Instance.GetHeight()
         ];
 
-        for (int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
+        for (int z = 0; z < LevelGrid.Instance.GetWidth(); z++)
         {
-            for (int z = 0; z < LevelGrid.Instance.GetHeight(); z++)
+            for (int x = 0; x < LevelGrid.Instance.GetHeight(); x++)
             {
-                GridPosition gridPosition = new GridPosition(x, z);
+                //why z,x?????
+                GridPosition gridPosition = new GridPosition(z, x);
                 //rewrite?
                 Instantiate(gridFieldTilePrefab[data[x,z]], LevelGrid.Instance.GetWorldPosition(gridPosition), transform.rotation * Quaternion.Euler(-90f, 0f, 0f));
             }

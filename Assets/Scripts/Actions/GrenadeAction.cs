@@ -7,14 +7,9 @@ public class GrenadeAction : BaseAction
 {
     [SerializeField] private Transform grenadeProjectilePrefab;
 
-    private TerrainEffectManager terrainEffectSystem;
-
     private int maxThrowDistance = 7;
 
-    private void Start()
-    {
-        terrainEffectSystem = GetComponent<TerrainEffectManager>();
-    }
+
 
     private void Update()
     {
@@ -76,7 +71,7 @@ public class GrenadeAction : BaseAction
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
 
-        terrainEffectSystem.ApplyTerrainEffect("fire", gridPosition);
+        TerrainEffectManager.Instance.ApplyTerrainEffect("fire", gridPosition);
 
         ActionStart(onActionComplete);
     }

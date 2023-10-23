@@ -18,10 +18,23 @@ public class TerrainEffectManager : MonoBehaviour
     //    public GridPosition gridPosition;
     //}
 
+    public static TerrainEffectManager Instance { get; private set; }
+
+    [SerializeField] private TerrainEffect[] TerrainEffectPrefab;
+
+
     private List<TerrainEffect> terrainEffectList;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Debug.LogError("There's more than one TerrainEffectManager! " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         terrainEffectList = new List<TerrainEffect>();
     }
 
@@ -34,8 +47,14 @@ public class TerrainEffectManager : MonoBehaviour
     {
         if (typeOfTerrainEffect == "fire")
         {
-            FireTerrainEffect fireTerrainEffect = LevelGrid.Instance.AddComponent<FireTerrainEffect>();
+            TerrainEffect fireTerrainEffect = TerrainEffectPrefab[0];
+            Vector3 position = LevelGrid.Instance.GetWorldPosition(gridPosition);
             LevelGrid.Instance.AddTerrainEffectAtGridPosition(gridPosition, fireTerrainEffect);
+
+            //subject to remove
+            Instantiate(fireTerrainEffect, position, transform.rotation * Quaternion.Euler(-90f, 0f, 0f));
+            //
+
             terrainEffectList.Add(fireTerrainEffect);
         }
     }

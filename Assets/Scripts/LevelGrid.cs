@@ -90,8 +90,6 @@ public class LevelGrid : MonoBehaviour
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.AddTerrainEffect(effect);
     }
-
-    //maybe remove this?
     public List<TerrainEffect> GetTerrainEffectsListAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);

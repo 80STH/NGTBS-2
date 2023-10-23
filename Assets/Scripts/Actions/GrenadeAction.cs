@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class GrenadeAction : BaseAction
 {
-
-
     [SerializeField] private Transform grenadeProjectilePrefab;
 
+    private TerrainEffectManager terrainEffectSystem;
 
     private int maxThrowDistance = 7;
+
+    private void Start()
+    {
+        terrainEffectSystem = GetComponent<TerrainEffectManager>();
+    }
 
     private void Update()
     {
@@ -71,6 +75,8 @@ public class GrenadeAction : BaseAction
         Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviourComplete);
+
+        terrainEffectSystem.ApplyTerrainEffect("fire", gridPosition);
 
         ActionStart(onActionComplete);
     }

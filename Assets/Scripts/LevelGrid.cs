@@ -51,6 +51,7 @@ public class LevelGrid : MonoBehaviour
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.AddUnit(unit);
+        //apply effects
     }
 
     public List<Unit> GetUnitListAtGridPosition(GridPosition gridPosition)
@@ -82,6 +83,25 @@ public class LevelGrid : MonoBehaviour
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.RemoveBuilding(building);
+    }
+
+    public void AddTerrainEffectAtGridPosition(GridPosition gridPosition, TerrainEffect effect)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        gridObject.AddTerrainEffect(effect);
+    }
+
+    //maybe remove this?
+    public List<TerrainEffect> GetTerrainEffectsListAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.GetTerrainEffectList();
+    }
+
+    public void RemoveTerrainEffectAtGridPosition(GridPosition gridPosition, TerrainEffect effect)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        gridObject.RemoveTerrainEffect(effect);
     }
 
     public void UnitMovedGridPosition(Unit unit, GridPosition fromGridPosition, GridPosition toGridPosition)
@@ -129,6 +149,18 @@ public class LevelGrid : MonoBehaviour
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         return gridObject.GetBuilding();
+    }
+
+    public bool HasAnyTerrainEffectOnGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.HasAnyTerrainEffect();
+    }
+
+    public TerrainEffect GetTerrainEffectAtGridPosition(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.GetTerrainEffect();
     }
 
     public IInteractable GetInteractableAtGridPosition(GridPosition gridPosition)

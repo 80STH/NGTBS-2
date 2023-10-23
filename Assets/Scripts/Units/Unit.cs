@@ -17,9 +17,13 @@ public class Unit : MonoBehaviour
     private GridPosition gridPosition;
     private HealthSystem healthSystem;
     private ShiftSystem shiftSystem;
+    private StatusEffectSystem effectSystem;
     protected BaseAction[] baseActionArray;
     private bool movementAvailable = true;
     private bool actionAvailable = true;
+
+    List<StatusEffect> statusEffectList = new List<StatusEffect>();
+
 
     private void Awake()
     {
@@ -28,6 +32,7 @@ public class Unit : MonoBehaviour
         //mandatory actions
         baseActionArray = GetComponents<BaseAction>();
         //baseActionArray.Append(GetComponent<MoveAction>());
+        effectSystem = GetComponent<StatusEffectSystem>();
     }
 
     private void Start()
@@ -105,7 +110,8 @@ public class Unit : MonoBehaviour
         {
             SpendActionAvailability();
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
@@ -185,6 +191,11 @@ public class Unit : MonoBehaviour
     public float GetHealthNormalized()
     {
         return healthSystem.GetHealthNormalized();
+    }
+
+    public List<StatusEffect> GetStatusEffects()
+    {
+        return effectSystem.GetStatusEffectList();
     }
 
 }

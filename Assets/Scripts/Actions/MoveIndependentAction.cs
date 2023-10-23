@@ -101,6 +101,12 @@ public class MoveIndependentAction : BaseAction
                     continue;
                 }
 
+                if (LevelGrid.Instance.HasAnyBuildingOnGridPosition(testGridPosition))
+                {
+                    // Grid Position already occupied with Building
+                    continue;
+                }
+
                 if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
                 {
                     continue;

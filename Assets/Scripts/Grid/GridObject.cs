@@ -10,6 +10,7 @@ public class GridObject
     private GridPosition gridPosition;
     private List<Unit> unitList;
     private List<Building> buildingList;
+    private List<TerrainEffect> terrainEffectList;
     private IInteractable interactable;
 
     public GridObject(GridSystemHex<GridObject> gridSystem, GridPosition gridPosition)
@@ -18,6 +19,7 @@ public class GridObject
         this.gridPosition = gridPosition;
         unitList = new List<Unit>();
         buildingList = new List<Building>();
+        terrainEffectList = new List<TerrainEffect>();
     }
 
     public override string ToString()
@@ -61,6 +63,21 @@ public class GridObject
         return buildingList;
     }
 
+    public void AddTerrainEffect(TerrainEffect terrainEffect)
+    {
+        terrainEffectList.Add(terrainEffect);
+    }
+
+    public void RemoveTerrainEffect(TerrainEffect terrainEffect)
+    {
+        terrainEffectList.Remove(terrainEffect);
+    }
+
+    public List<TerrainEffect> GetTerrainEffectList()
+    {
+        return terrainEffectList;
+    }
+
     public bool HasAnyUnit()
     {
         return unitList.Count > 0;
@@ -87,6 +104,23 @@ public class GridObject
         if (HasAnyBuilding())
         {
             return buildingList[0];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool HasAnyTerrainEffect()
+    {
+        return terrainEffectList.Count > 0;
+    }
+
+    public TerrainEffect GetTerrainEffect()
+    {
+        if (HasAnyTerrainEffect())
+        {
+            return terrainEffectList[0];
         }
         else
         {

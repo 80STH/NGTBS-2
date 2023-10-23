@@ -55,6 +55,12 @@ public class TeleportAction : BaseAction
                     continue;
                 }
 
+                if (LevelGrid.Instance.HasAnyBuildingOnGridPosition(testGridPosition))
+                {
+                    // Grid Position already occupied with building
+                    continue;
+                }
+
                 if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
                 {
                     continue;

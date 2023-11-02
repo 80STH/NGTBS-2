@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 11.99608, z: -10}
+  m_FollowOffset: {x: 0, y: 11.99999, z: -10}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -2672,8 +2672,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42408267, y: -0.0000000290023, z: 0.0000000135811105, w: 0.9056235}
-  m_LocalPosition: {x: 10, y: 11.99608, z: -4}
+  m_LocalRotation: {x: 0.4241552, y: 0, z: 0, w: 0.9055895}
+  m_LocalPosition: {x: 10, y: 11.99999, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14029,6 +14029,50 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!1 &729453481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 729453483}
+  - component: {fileID: 729453482}
+  m_Layer: 0
+  m_Name: SaveLoad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &729453482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729453481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e539901ae894b40bd7f57c7b09bdd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &729453483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729453481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &740475725
 GameObject:
   m_ObjectHideFlags: 0
@@ -20489,8 +20533,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285166486}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42408267, y: -0.0000000290023, z: 0.0000000135811105, w: 0.9056235}
-  m_LocalPosition: {x: 10, y: 11.99608, z: -4}
+  m_LocalRotation: {x: 0.4241552, y: 0, z: 0, w: 0.9055895}
+  m_LocalPosition: {x: 10, y: 11.99999, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20878,10 +20922,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1477983528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac7d9a9c45ae4a40be9731868175009, type: 3}
+  m_Script: {fileID: 11500000, guid: 08bb5f6acec202d48bd2b56b40d47290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainEffectList: []
+  TerrainEffectPrefab:
+  - {fileID: -7800629910811533501, guid: eeb003a2fe0d3974fabae5d065136d16, type: 3}
 --- !u!4 &1477983530
 Transform:
   m_ObjectHideFlags: 0
@@ -27162,3 +27207,4 @@ SceneRoots:
   - {fileID: 1186603110}
   - {fileID: 335543948}
   - {fileID: 1477983530}
+  - {fileID: 729453483}

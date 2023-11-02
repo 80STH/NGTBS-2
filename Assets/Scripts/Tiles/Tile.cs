@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseTile : MonoBehaviour
+public abstract class Tile : MonoBehaviour
 {
     //public static event EventHandler OnAnyDoorOpened;
     //public event EventHandler OnDoorOpened;
